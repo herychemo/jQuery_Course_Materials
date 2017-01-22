@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample 3.1</title>
+	<style>
+		.bloque{
+			display: block;
+			margin: 15px;
+		}
+		form input{
+			margin: 6px 12px;
+		}
+		form input[type="text"],form input[type="password"]{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<h2 class="titulo_1" >Detectar Eventos Time</h2>
+	
+	<h3 id="title_2">Titulo dos...</h3>
+	
+	<div class="bloque">
+		<input type="button" class="simple-btn" value="Input Button" >
+		<button class="button">Boton Real</button>
+	</div>
+	
+	<div class="bloque">			<!-- Bloque vacio. -->
+		
+	</div>
+
+	<form action="#" id="form_" class="bloque" method="GET">
+		<input type="text" 		name="user" id="user" placeholder="Usuario" 	required>	
+
+		<input type="password" 	name="pass" id="pass" placeholder="Contraseña" 	required>	
+		
+		<input type="text" 	name="fullName" id="Nombre Completo" placeholder="Nombre Completo" 	required>	
+		
+		<div class="bloque">
+			Sexo: <span id="radioPrinter" >Hombre</span> <br>
+			<input type="radio" name="gender" id="man" checked>	
+			<label for="man">Hombre</label>
+			<input type="radio" name="gender" id="radio2">	
+			<label for="radio2">Mujer</label>
+		</div>
+
+		<input type="reset" value="Restablecer">			
+		<input type="submit" value="Enviar">
+	</form>
+
+	<!-- - - >
+	<script src="./js/jquery.js"></script>
+	<!-- -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- -->
+	<script>
+		var main = function(){
+			console.log( "Hi Welcome..." );
+		}
+		$( document ).ready( main );
+		//$( main );
+		/*
+			Insturcciones...
+	
+			Habrá eventos de mouseover, mouseout & click, en los dos títulos de la parte superior, 
+				pero el segundo título debe mostrar el estado del primero y viceversa
+			
+			habrá que darle eventos click diferentes a los dos botones, mostrando su contenido en un alert, 
+			
+			crear un nuevo elemento html dentro del bloque vacío, y asignarle un evento [decisión libre].
+	
+			mostrar dentro de #radioPrinter, el valor del label, del radio seleccionado.		
+
+			al dar reset al form, mandar el foco al campo nombre completo.
+
+			al dar form submit, mostrar el VALOR, de los campos, en un alert().
+
+			sonreír.
+		*/
+	</script>
+</body>
+</html>

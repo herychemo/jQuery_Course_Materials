@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample 3</title>
+	<style>
+		.bloque{
+			display: block;
+			margin: 15px;
+		}
+		form input{
+			margin: 6px 12px;
+		}
+		form input[type="text"],form input[type="password"]{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<h2 id="mainTitle"> detectar eventos </h2>
+	
+	<div class="bloque">
+		<input type="button" class="simple-btn" value="Boton!!"  >	
+	</div>
+
+	<div class="bloque">
+		<select name="selector" id="selector">
+			<option value="0">zero</option>
+			<option value="1">one</option>
+			<option value="2">two</option>
+			<option value="3">three</option>
+		</select>
+	</div>
+	<div class="bloque">
+		<input type="checkbox" name="check_" id="check_" checked="checked">
+		<label for="check_">Activar/Desactivar Eventos... </label>
+	</div>
+	<div class="bloque">
+		<span id="radioText" > x </span> <br>
+
+		<input type="radio" name="radios" id="radio1">	
+		<label for="radio1">Radio 1</label>
+		
+		<input type="radio" name="radios" id="radio2">	
+		<label for="radio2">Radio 2</label>
+		
+		<input type="radio" name="radios" id="radio3">	
+		<label for="radio3">Radio 3</label>
+	</div>
+
+	<form action="" class="bloque" method="POST">
+		<input type="text" 		name="user" id="user" placeholder="Usuario" 	required>			
+		<input type="password" 	name="pass" id="pass" placeholder="Contraseña" 	required>	
+
+		<input type="reset" value="Restablecer">								
+		<input type="submit" value="Enviar">									
+	</form>
+	
+	<!-- - - >
+	<script src="./js/jquery.js"></script>
+	<!-- -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- -->
+	<script>
+		var main = function(){
+			console.log( "Hi Welcome..." );
+			
+			var $check_ = jQuery("#check_");
+
+			$check_.change(function(event) {
+				if ( $check_.is(":checked") )
+					eventsOn();
+				else
+					eventsOff( $(this) );
+			});
+
+			eventsOn();
+		}
+		$( document ).ready( main );
+		//$( main );
+
+		function eventsOn(){
+			jQuery(".simple-btn").click(function(event) {		//
+				alert( $(this).val() );
+			});
+
+			$("#mainTitle").on( {
+				"click" : function(e){
+					alert( $(this).text() );
+				},
+				"mouseover" : function(e){
+					$(this).text(" Detectar Eventos Mouse Over Time!! ");
+				},
+				"mouseout" : function(e){
+					$(this).text(" detectar eventos ");
+				}
+			});
+			
+			$("select#selector").on( "change", function(e){
+				alert( $(this).val() + " - " + $("#selector option:selected").text() );
+			});
+
+			$("input[type='radio'][name='radios']").change(function(e){
+				$("#radioText").text( $(this).next("label").text() );
+			});
+
+			$("form input[type='reset']").click(function(event) {
+				$("#user").focus();
+			});
+			$("form").on("submit", function(e){
+				e.preventDefault();
+				alert( "Aquí enviamos tus datos. " + $("#user").val() + " " + $("#pass").val() );
+				$("form input[type='reset']").click();
+			});
+
+		}
+		function eventsOff( exception ){
+
+			var universe = $("*").not(exception);
+			universe.off("click");
+			universe.off("mouseover");
+			universe.off("mouseout");
+			universe.off("change");
+			universe.off("submit");
+
+		}
+
+	</script>
+</body>
+</html>

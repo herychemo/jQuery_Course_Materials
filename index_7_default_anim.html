@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample 7</title>
+	<style>
+		*{
+			box-sizing:border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			font-size: 22px;
+		}
+		.common-half{
+			width: 49%;
+			display: inline-block;
+		}
+		.others{
+			display: none;
+		}
+		.block{
+			display: block;
+			width: 99%;
+			max-width: 99%;
+		}
+		.main{
+			width: 100%;
+			max-width: 1100px;
+			margin: auto;
+		}
+		div{
+			border-radius: 6px 6px 6px 6px;
+			-moz-border-radius: 6px 6px 6px 6px;
+			-webkit-border-radius: 6px 6px 6px 6px;
+		}
+		.main .first{
+			margin-top: 10px;
+			background-color: #7C87E9;
+			padding: 6px;
+			height: 620px;
+			color: white;
+		}
+		.main .first div{
+			vertical-align: top;
+		}
+		h3{
+			margin-top: 10px;
+			margin-left: 20px;
+		}
+		input[type="button"]{
+			display: block;
+			margin-left: 22px;
+			margin-top: 10px;
+			width: 220px;
+			padding: 4px;
+			font-size: 15px;	
+		}
+		.figure:hover{
+			border: 3px solid white;
+			font-size: 28px;
+		}
+		.figure:active{
+			background-color: white;
+		}
+		.type_1{
+			margin: 4px;
+			padding: 46px;
+			background-color: red;
+			color: white;
+			display: inline-block;
+		}
+		.type_2{
+			margin: 12px;
+			padding: 32px;
+			background-color: blue;
+			color: white;
+			display: inline-block;
+		}
+		.type_3{
+			margin: 8px;
+			padding: 20px;
+			background-color: green;
+			color: white;
+			display: inline-block;
+		}
+		.type_4{
+			margin: 16px;
+			padding: 10px;
+			background-color: yellow;
+			color: black;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="main">
+		<div class="block first">
+			<div class="common-half controls">
+				<h3>Controls.</h3>
+				<input type="button" value="show()">
+				<input type="button" value="hide()">
+				<input type="button" value="toggle()">
+				<input type="button" value="fadeIn() (show)">
+				<input type="button" value="fadeOut() (hide)">
+				<input type="button" value="fadeToggle()">
+				<input type="button" value="slideDown() (show)">
+				<input type="button" value="slideUp() (hide)">
+				<input type="button" value="slideToggle()">
+				<input type="button" value="custom sequence">
+
+				<h3>Velocidad</h3>
+				<input type="radio" name="vel" id="fast" value="fast" checked>
+				<label for="fast">Fast</label>
+				<input type="radio" name="vel" id="slow" value="slow">
+				<label for="slow">Slow</label>
+
+				<h3>Target</h3>
+				<span id="targetText">Figure 1</span>
+			</div>
+			<div class="common-half figures">
+				<h3>Figures.</h3>
+				<div class="figure type_1" id="fig_1">Figure 1</div>
+				<div class="figure type_2" id="fig_2">Figure 2</div>
+				<div class="figure type_4" id="fig_3">Figure 3</div>
+				<div class="figure type_3" id="fig_4">Figure 4</div>
+				<div class="figure type_1" id="fig_5">Figure 5</div>
+				<div class="figure type_2" id="fig_6">Figure 6</div>
+				<div class="figure type_4" id="fig_7">Figure 7</div>
+				<div class="figure type_3" id="fig_8">Figure 8</div>
+			</div>
+		</div>
+	</div>
+	<!-- - - >
+	<script src="./js/jquery.js"></script>
+	<!-- -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- -->
+	<script>
+		var main = function(){
+			console.log( "Hi Welcome..." );
+			var target = "fig_1";
+			$(".figure").on('click', function(e) {
+				target = $(this).attr("id");
+				$("#targetText").text( $(this).text() );
+			});
+			$("input[type='button']").on('click', function(e) {
+				var c = $(this).val().indexOf(")");
+				if( c == -1 ){
+					customSequence( target );
+					return;
+				}
+				var cmd = "$('#"+target+"')."+$(this).val().substring(0 , c) +'\''+ $("input[type='radio'][name='vel']:checked").val() +'\');';
+				console.log( cmd );
+				$.globalEval( cmd );
+			});
+		}
+		$( document ).ready( main );
+		//$( main );
+		function customSequence( target ){
+			$("#"+target).slideUp( ).slideDown( ).slideUp( ).slideDown( );
+		}
+//
+	</script>
+</body>
+</html>

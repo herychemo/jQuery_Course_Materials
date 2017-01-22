@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample 12</title>
+	<style>
+		*{
+			box-sizing:border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			font-size: 22px;
+		}
+		.common-half{
+			width: 49%;
+			display: inline-block;
+		}
+		.others{display: none;}
+		.block{	display: block;}
+		.main{
+			width: 100%;
+			max-width: 1200px;
+			margin: auto;
+		}
+		.main div{
+			background-color: rgb(0,120,200);
+			padding: 20px;
+			vertical-align: top;
+		}
+		.btn{
+			margin: 5px 15px;
+			padding: 5px;
+			border-radius: 			6px;
+			-moz-border-radius: 	6px;
+			-webkit-border-radius: 	6px;
+		}
+		button.link-btn{
+			background-color: inherit;
+			border: 0px solid black;
+			color: #0066cc;
+		}
+		button.link-btn:hover{
+			text-decoration: underline;
+			color: rgb(102, 179, 255);
+		}
+		button.link-btn.in{
+			border: 2px solid #0066cc;
+		}
+		button.link-btn.in:hover{
+			border: 2px solid rgb(102, 179, 255);
+		}
+		.area{
+			padding: 20px;
+			border-radius: 			12px;
+			-moz-border-radius: 	12px;
+			-webkit-border-radius: 	12px;
+			min-height: 450px;
+			color: white;
+			max-height: 700px;
+			overflow-x: hidden;
+			overflow-y: scroll;
+		}
+		.area h2{
+			margin-left: 50px;
+		}
+
+		form, .bloque-results{
+			border-radius: 			8px;
+			-moz-border-radius: 	8px;
+			-webkit-border-radius: 	8px;
+			max-width: 600px;
+			border: 2px solid white;
+		}
+		.bloque{
+			display: block;
+			margin: 2px 4px;
+			padding: 4px!important;
+		}
+		.btn-form{
+			font-size: 16px;
+			background-color: white;
+		}
+		.btn-form:focus{
+			background-color: #cccccc;
+		}
+		.btn-form:active{
+			background-color: #8c8c8c;
+		}
+		.control{
+			display: block;
+			width: 100%;
+			margin: 2px 6px;
+			padding: 4px;
+			font-size: 18px;
+			border-radius: 			6px;
+			-moz-border-radius: 	6px;
+			-webkit-border-radius: 	6px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="main first">
+		<button class="btn link-btn in">Post() 		</button>
+		<button class="btn link-btn" >	Get() 		</button>
+		<button class="btn link-btn" >	getJSON() 	</button>
+
+		<div class="area in" id="A1">
+			<h2>Enviar datos de un formulario con POST</h2>
+			<h4>Solicitud de beca</h4>
+			<form id="form-post" action="#">
+				<div class="bloque">
+					<label for="f1-user">Usuario</label>
+					<input class="control" maxlength="50" type="text" name="f1-user" id="f1-user" placeholder="Usuario" required autofocus>
+				</div>
+				<div class="bloque">
+					<label for="f1-fullName">Nombre completo</label>
+					<input class="control" maxlength="50" type="text" name="f1-fullName" id="f1-fullName" placeholder="Nombre completo" required>
+				</div>
+				<div class="bloque">
+					<label for="f1-description">Describirnos, ¿Por qué debe recibir la beca?</label>
+					<textarea name="f1-description" id="f1-description" placeholder="Descripción" rows="3" class="control" maxlength="200" required></textarea>
+				</div>
+
+				<div class="bloque">
+					<input class="btn btn-form" type="reset" value="Reset Form">
+					<input class="btn btn-form" type="submit" value="Enviar">
+				</div>
+			</form>
+		</div>
+		<div class="area others" id="A2">
+			<h2>Recuperar datos de un servidor.</h2>
+			<h4>Consulta de datos.</h4>
+			<form id="form-get" action="#">
+				<div class="bloque">
+					<label for="f2-id">ID?</label>
+					<input class="control" type="number" min="1" value="1" name="f2-id" id="f2-id" placeholder="Usuario" required >
+				</div>
+				<div class="bloque">
+					<input class="btn btn-form" type="submit" value="Buscar">
+				</div>
+			</form>
+			<div id="f2-printer" class="bloque-results">
+			</div>
+		</div>
+		<div class="area others" id="A3">
+			<h2>Recuperar arrays de datos de un servidor.</h2>
+			<h4>Resumen de resultados.</h4>
+			<form id="form-json" action="#">
+				<div class="bloque">
+					<input class="btn btn-form" type="submit" value="Update">
+				</div>
+			</form>
+			<div id="f3-printer"></div>
+		</div>
+
+	</div>
+
+	<!-- - - >
+	<script src="./js/jquery.js"></script>
+	<!-- -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- -->
+	<script>
+		var main = function(){
+			console.log( "Hi Welcome..." );
+			$.each($("button.link-btn"), function(index, el) {
+				$.data( el, "tab", index+1 );
+			});
+			$(".link-btn").click(function(event) {
+				if( $(this).hasClass('in') )
+					return;
+				$(".link-btn").not($(this)).removeClass('in');
+				$(this).addClass('in');
+
+				$last = $(".area.in");
+				$last.removeClass('in');
+				$last.hide();
+				
+				$tab = $("#A" + $.data( this, "tab" ) );
+				$tab.show("fast");
+				$tab.addClass('in');
+			});
+
+				// for POST code
+			$("#form-post").on("submit", function(e){
+				e.preventDefault();
+				var myData = {
+					user: $("#f1-user").val(),
+					password: $("#f1-password").val(), 
+					fullName: $("#f1-fullName").val(), 
+					description: $("#f1-description").val()
+				};
+				$('#form-post input[type="reset"]').click();
+				$.post('./ajax/createUser.php', myData, function(data, textStatus, xhr) {
+					alert( data );
+				});
+			});
+			$('#form-post input[type="reset"]').on("click", function(e){
+				$("#f1-user").focus();
+			});
+
+				// for GET code
+			$("#form-get").on("submit", function(e){
+				e.preventDefault();
+				var myData = {
+					id: $("#f2-id").val()
+				};
+				$("#f2-printer").text("");
+				var get_1 = $.get('./ajax/getOneResult.php', myData, 0, "json");
+				var get_2 = $.get('./views/oneUser.html');
+				$.when( get_1, get_2 ).done(function( data, html ){
+					$("#f2-printer").html( 
+							renderHtmlblock( data[0], html[0] )
+						);
+				}).fail(function(){
+					alert("Algo salio mal...");
+				});
+			});
+
+				// for GETJSON code
+			$("#form-json").on("submit", function(e){
+				e.preventDefault();
+				$("#f3-printer").text("");
+				var get_1 = $.getJSON('./ajax/getAll.php');
+				var get_2 = $.get('./views/oneUser.html');
+				$.when( get_1, get_2 ).done(function( data, html ){
+					$.each( data[0], function(index, val) {
+						$("#f3-printer").append(
+								renderHtmlblock( val, html[0], true )
+							);
+					});
+				}).fail(function(){
+					alert("Algo salio mal...");
+				});
+			});
+		}
+		$( document ).ready( main );
+		//$( main );
+
+		var results = ["Lo sentimos, más suerte el proximo año!", "Felicidades, has sido seleccionado!"];
+		function renderHtmlblock( data, html , close ){
+			var c = (close != undefined && close == true);
+			return	((c)? '<div class="bloque-results">':'')+html.replace("|_ID_|", data.id )
+									.replace("|_USER_|", data.user )
+									.replace("|_FULL_NAME_|", data.fullName )
+									.replace("|_DESCRIPTION_|", data.description )
+									.replace("|_RESULT_|", window.results[data.result ] )+((c)? '</div>':'');
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample 10</title>
+	<style>
+		*{
+			box-sizing:border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+
+			font-size: 24px;
+		}
+		.common-half{
+			width: 49%;
+			display: inline-block;
+		}
+		.others{
+			display: none;
+		}
+		.block{
+			display: block;
+			width: 99%;
+			max-width: 99%;
+		}
+		.main{
+			width: 100%;
+			max-width: 1300px;
+			margin: auto;
+		}
+		.main div{
+			margin-top: 10px;
+			background-color: #808080;
+			padding: 20px;
+
+			vertical-align: top;
+		}
+		.area{
+			padding: 20px;
+
+			border-radius: 			12px;
+			-moz-border-radius: 	12px;
+			-webkit-border-radius: 	12px;
+
+			min-height: 450px;
+			color: white;
+		}
+		.area h2{
+			margin-left: 50px;
+		}
+		.bloque{
+			display: block;
+			margin: 15px;
+		}
+		#commands-console{
+			margin-top: 12px;
+		}
+		span.Info{
+			margin-top: 5px;
+			margin-bottom: 5px;
+			margin-left: 20px;
+			display: block;
+			font-size: 20px;
+			font-style: italic;
+		}
+		.elements-container{
+			height: 600px;
+		}
+		#html_viewer{
+			overflow: scroll;
+			font-size: 16px;
+			white-space: pre-wrap;
+			height: 100%;
+			background-color: black;
+			color: white;
+			
+		}
+
+		.aux-helper{
+			padding: 2px 4px!important;
+			height: 60px;
+			background-color: #6666ff!important;
+			overflow-y: hidden;
+			overflow-x: scroll;
+
+			border-radius: 			6px;
+			-moz-border-radius: 	6px;
+			-webkit-border-radius: 	6px;
+		}
+		.ref{
+			margin: 1px 5px 1px 1px;
+			padding: 3px;
+			font-size: 16px;
+
+			background-color: #000099;
+			color: white;
+			border: 1px solid blue;
+			
+			border-radius: 			5px;
+			-moz-border-radius: 	5px;
+			-webkit-border-radius: 	5px;
+
+			cursor: pointer;
+		}
+		.ref.up{
+			background-color: #0000e6;
+		}
+		#sizeHelper{
+			background-color: white;
+			position: relative;
+			height: 20px;
+			width: 20px;
+			display: inline-block;
+			left: -20px;
+			top: -20px;
+
+			cursor: pointer;
+		}
+		.item_ .item_{
+			margin-left: 20px;
+		}
+		.item_:hover{
+			cursor: pointer;
+		}
+		.item_:active{
+			background-color: #eee!important;
+			color: black!important;
+		}
+		.square_1{
+			background-color: blue!important;
+			padding: 2px!important;
+			color: white!important;
+			
+			border-radius: 			5px;
+			-moz-border-radius: 	5px;
+			-webkit-border-radius: 	5px;
+		}
+		.square_2{
+			background-color: red!important;
+			padding: 4px!important;
+			color: black!important;
+			
+			border-radius: 			5px;
+			-moz-border-radius: 	5px;
+			-webkit-border-radius: 	5px;
+		}
+		.square_3{
+			background-color: green!important;
+			padding: 6px!important;
+			color: white !important;
+			
+			border-radius: 			5px;
+			-moz-border-radius: 	5px;
+			-webkit-border-radius: 	5px;
+		}
+		.chosen-one{
+			border: 3px dotted black;
+		}
+		.affected{
+			font-size: 15px;
+			border: 2px dashed white;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="main">
+		<div class="area" id="A1">
+			<h2>DOM Navigation functions.</h2>
+			<div class="elements-container block">
+				<div class="common-half target">
+					
+					<div class="item_ square_1">
+						Contenido 1
+						<div class="item_ square_2">Contenido 3</div>
+						<div class="item_ square_2">Contenido 4</div>
+					</div>
+
+					<div class="item_ square_1">Contenido 2</div>
+
+					<div class="item_ square_3">
+						Contenido 4
+						<div class="item_ square_1">Contenido 2</div>
+						<div class="item_ square_2">Contenido 2</div>
+					</div>
+
+				</div>
+				<div id="html_viewer" class="common-half"></div>
+			</div>
+			<div class="aux-helper">
+				<button class="ref" id="ref-0">children()</button>
+				<button class="ref" id="ref-1">parent()</button>
+				<button class="ref" id="ref-2">siblings()</button>
+				<button class="ref" id="ref-3">next()</button>
+				<button class="ref" id="ref-3">nextAll()</button>
+				<button class="ref" id="ref-3">prev()</button>
+				<button class="ref" id="ref-3">prevAll()</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- - - >
+	<script src="./js/jquery.js"></script>
+	<!-- -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- -->
+	<script>
+		var main = function(){
+			console.log( "Hi Welcome..." );
+
+			update_view();
+
+			var $item_ = $(".item_"), $ref = $(".ref");
+			$ref.on("click", function(e){
+				$ref.removeClass('up');
+				$item_.removeClass('affected');
+				$( ".target" ).removeClass('affected');
+				if( $('.chosen-one').length < 1 )
+					return;
+				$(this).addClass('up');
+				var cmd = "showSelection( $('.chosen-one')." + $(this).text()+" );";
+				$.globalEval( cmd );
+				update_view();
+			});
+			$item_.click(function(event) {
+				event.stopPropagation();
+				$item_.removeClass('chosen-one');
+				$item_.removeClass('affected');
+				$( ".target" ).removeClass('affected');
+				$ref.removeClass('up');
+				$(this).addClass('chosen-one');
+				update_view();
+			});
+			
+		}
+		$( document ).ready( main );
+		//$( main );
+
+		function update_view(){
+			$target = $( ".target" );
+			$html_viewer = $("#html_viewer");
+
+			var content = '<div class="common-half target">'+($target.html())+'</div>' ;
+			$html_viewer.text( formatHtmlTags( content ) );
+			
+			$html_viewer.prepend('<img id="sizeHelper" src="./imgs/drag.png" alt="D">');
+
+			var currentX = 0, moving = false, from1 = 0, from2 = 0; 
+			$("#sizeHelper").on({
+				'mousedown touchstart' : function(e){
+					e.preventDefault();
+					currentX = e.pageX;
+					moving = true;
+					from1 = $target.width();
+					from2 = $html_viewer.width();
+				}
+			});
+			$(window).off('mousemove');
+			$(window).off('mouseup');
+			$(window).on({
+				'mousemove' : function(e){
+					if( moving ){
+						e.preventDefault();
+						var dif = e.pageX - currentX;
+						$target.width( from1 + dif );
+						$html_viewer.width( from2 - dif );
+					}
+				}, 'mouseup': function(event) {
+					moving = false;
+				}
+			});
+		}
+		function showSelection( selection ){
+			selection.addClass('affected');
+		}
+
+		function formatHtmlTags( html_ ){
+			html_ = html_.replace(/\t/g, '');
+			html_ = html_.replace(/\n/g, '');
+			var indents = 0, lookingSlashes = false, lookingEnds = 0; 
+			var buffer = '';
+			var html_new = "";
+			var current = '';
+			for (var i = 0; i < html_.length; i++) {
+				current = html_.charAt(i);
+				buffer += current;
+				if( current == '<' ){
+					if( lookingSlashes ){
+						return "Error";
+						console.log( html_new );
+					}
+					lookingSlashes = true;
+					continue;
+				}
+				if( lookingSlashes && current == '/' ){
+					lookingEnds++;
+					indents--;
+					html_new += '\n';
+					for (var j = 0; j < indents; j++) 
+						html_new += '\t';
+				}
+				lookingSlashes = false;
+				if( current == '>' ){
+					if( lookingEnds > 0 ){
+						lookingEnds--;
+
+					}else{
+						indents++;
+					}
+					html_new += buffer;	buffer = '';
+
+					html_new += '\n';
+					for (var j = 0; j < indents; j++) 
+						html_new += '\t';
+				}else
+					html_new += buffer;	buffer = '';
+
+			};
+			return html_new;
+		}
+	</script>
+</body>
+</html>

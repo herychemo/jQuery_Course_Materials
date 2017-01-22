@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample 5</title>
+	<style>
+		*{
+			box-sizing:border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+
+			font-size: 24px;
+		}
+		.common-half{
+			width: 49%;
+			display: inline-block;
+		}
+		.others{
+			display: none;
+		}
+		.block{
+			display: block;
+		}
+		.main{
+			width: 100%;
+			max-width: 1200px;
+			margin: auto;
+		}
+		.main div{
+			background-color: rgb(0,120,200);
+			padding: 20px;
+
+			vertical-align: top;
+		}
+		a{
+			color: white;
+			text-decoration: none;
+		}
+		a:hover{
+			text-decoration: underline;
+		}
+		button.link-btn{
+			background-color: inherit;
+			border: 0px solid black;
+			color: #0066cc;
+			margin: 5px 15px;
+			padding: 5px;
+
+			border-radius: 			6px;
+			-moz-border-radius: 	6px;
+			-webkit-border-radius: 	6px;
+		}
+		button.link-btn:hover{
+			text-decoration: underline;
+			color: rgb(102, 179, 255);
+		}
+		button.link-btn.in{
+			border: 2px solid #0066cc;
+		}
+		button.link-btn.in:hover{
+			border: 2px solid rgb(102, 179, 255);
+		}
+		.area{
+			padding: 20px;
+
+			border-radius: 			12px;
+			-moz-border-radius: 	12px;
+			-webkit-border-radius: 	12px;
+
+			min-height: 450px;
+			color: white;
+		}
+		.area h2{
+			margin-left: 50px;
+		}
+		.bloque{
+			display: block;
+			margin: 15px;
+		}
+		form input{
+			margin: 6px 12px;
+		}
+		form input, form select{
+			display: block;
+			width: 60%;
+		}
+		.target{
+			margin-top: 20px;
+			background-color: inherit;
+			color: inherit;
+
+			padding: 20px;
+
+			border-radius: 			6px;
+			-moz-border-radius: 	6px;
+			-webkit-border-radius: 	6px;
+		}
+		.neither{}
+		.theme-1{
+			border: 1px solid #007399;
+			background-color: #0099cc;
+			color: #ccf2ff;
+		}
+		.theme-1:hover{
+			border: 1px solid #0086b3;
+			background-color: #00ace6;
+			color: #e6f9ff;
+		}
+		.theme-2{
+			border: 1px solid #993300;
+			background-color: #cc4400;
+			color: #ffddcc;
+		}
+		.theme-2:hover{
+			border: 1px solid #b33c00;
+			background-color: #e64d00;
+			color: #ffeee6;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<div class="main">
+		<button class="link-btn in">Css Testing</button>
+		<button class="link-btn" >	Class Testing</button>
+		<div class="area" id="A1">
+			<h2>Css Testing</h2>
+			<div class="common-half">
+				<form id="cssTestForm" action="">
+					<div class="bloque">
+						<label for="A1-bg">Background</label>
+						<select name="A1-bg" id="A1-bg">
+							<option value="0" selected>inherit</option>
+							<option value="1">red</option>
+							<option value="2">green</option>
+							<option value="3">blue</option>
+						</select>
+					</div>
+					<div class="bloque">
+						<label for="A1-cl">Color</label>
+						<select name="A1-cl" id="A1-cl">
+							<option value="0" selected>inherit</option>
+							<option value="1">white</option>
+							<option value="2">yellow</option>
+							<option value="3">black</option>
+						</select>
+					</div>
+				</form>
+			</div>
+			<div class="common-half">
+				<p id="A1-target" class="target">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error vel amet consectetur, id? Harum aut officiis numquam adipisci, officia. Iure enim nam non quam laborum, perferendis cum beatae, minus facere?
+				</p>
+			</div>
+		</div>
+		<div class="area others" id="A2">
+			<h2>Class Testing</h2>
+
+			<div class="common-half">
+				<form id="classTestForm" action="">
+					<div class="bloque">
+						<label for="A2-class">Clase</label>
+						<select name="A2-class" id="A2-class">
+							<option value="0" selected>neither</option>
+							<option value="1">theme-1</option>
+							<option value="2">theme-2</option>
+						</select>
+					</div>
+				</form>
+			</div>
+			<div class="common-half">
+				<p id="A2-target" class="target">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error vel amet consectetur, id? Harum aut officiis numquam adipisci, officia. Iure enim nam non quam laborum, perferendis cum beatae, minus facere?
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- - - >
+	<script src="./js/jquery.js"></script>
+	<!-- -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- -->
+	<script>
+		var main = function(){
+			console.log( "Hi Welcome..." );
+
+			$(".link-btn").click(function(event) {
+				if( $(this).hasClass('in') )
+					return;
+				$(".link-btn").toggleClass('in');
+				$(".area").toggleClass('others');
+			});
+
+			$("#A1-bg").change(function(event) {
+				$("#A1-target").css('background-color', $("#A1-bg option:selected").text());
+			});
+			$("#A1-cl").change(function(event) {
+				$("#A1-target").css('color', $("#A1-cl option:selected").text());
+				//$("#A1-target").css({
+				//	"background-color": $("#A1-bg option:selected").text(),
+				//	"color": $("#A1-cl option:selected").text()
+				//});
+			});
+			$("#A2-class").change(function(event) {
+				var $target2 = $("#A2-target");
+				$target2.removeClass('neither');
+				$target2.removeClass('theme-1');
+				$target2.removeClass('theme-2');
+				$target2.addClass( $("#A2-class option:selected").text() );
+			});
+
+
+		}
+		$( document ).ready( main );
+		//$( main );
+	</script>
+</body>
+</html>

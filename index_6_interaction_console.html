@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>	
+	<meta charset="UTF-8">
+	<title>Sample 6</title>
+	<style>
+		*{
+			box-sizing:border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+
+			font-size: 24px;
+		}
+		.common-half{
+			width: 49%;
+			display: inline-block;
+		}
+		.others{
+			display: none;
+		}
+		.block{
+			display: block;
+			width: 99%;
+			max-width: 99%;
+		}
+		.main{
+			width: 100%;
+			max-width: 1300px;
+			margin: auto;
+		}
+		.main div{
+			margin-top: 10px;
+			background-color: #808080;
+			padding: 20px;
+
+			vertical-align: top;
+		}
+		.area{
+			padding: 20px;
+
+			border-radius: 			12px;
+			-moz-border-radius: 	12px;
+			-webkit-border-radius: 	12px;
+
+			min-height: 450px;
+			color: white;
+		}
+		.area h2{
+			margin-left: 50px;
+		}
+		.bloque{
+			display: block;
+			margin: 15px;
+		}
+		#commands-console{
+			margin-top: 12px;
+		}
+		span.Info{
+			margin-top: 5px;
+			margin-bottom: 5px;
+			margin-left: 20px;
+			display: block;
+			font-size: 20px;
+			font-style: italic;
+		}
+		.elements-container{
+			height: 350px;
+		}
+		#html_viewer{
+			overflow: scroll;
+			font-size: 16px;
+			white-space: pre-wrap;
+			height: 100%;
+			background-color: black;
+			color: white;
+		}
+		.aux-helper{
+			padding: 2px 4px!important;
+			height: 60px;
+			background-color: #6666ff!important;
+			overflow-y: hidden;
+			overflow-x: scroll;
+
+			border-radius: 			6px;
+			-moz-border-radius: 	6px;
+			-webkit-border-radius: 	6px;
+		}
+		.ref{
+			margin: 1px 5px 1px 1px;
+			padding: 3px;
+			font-size: 16px;
+
+			background-color: #000099;
+			color: white;
+			border: 1px solid blue;
+			
+			border-radius: 			5px;
+			-moz-border-radius: 	5px;
+			-webkit-border-radius: 	5px;
+
+			cursor: pointer;
+		}
+		.ref.up{
+			background-color: #0000e6;
+		}
+		.sampleCode{
+
+			border-radius: 			5px;
+			-moz-border-radius: 	5px;
+			-webkit-border-radius: 	5px;
+			margin-top: 4px;
+
+			font-size: 16px;
+			padding: 2px;
+		}
+
+		.square_1{
+			background-color: blue!important;
+			padding: 2px!important;
+			color: white!important;
+			
+			border-radius: 			5px;
+			-moz-border-radius: 	5px;
+			-webkit-border-radius: 	5px;
+		}
+		.square_2{
+			background-color: red!important;
+			padding: 4px!important;
+			color: black!important;
+			
+			border-radius: 			5px;
+			-moz-border-radius: 	5px;
+			-webkit-border-radius: 	5px;
+		}
+		.square_3{
+			background-color: green!important;
+			padding: 6px!important;
+			color: white !important;
+			
+			border-radius: 			5px;
+			-moz-border-radius: 	5px;
+			-webkit-border-radius: 	5px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="main">
+		<div class="area" id="A1">
+			<h2>Items' Interaction Console.</h2>
+			<div class="elements-container block">
+				<div class="common-half target">
+					<div class="square_1">Contenido 1</div>
+					<div class="square_1">Contenido 2</div>
+				</div>
+				<div id="html_viewer" class="common-half"></div>
+			</div>
+			<form id="commands-console"  >
+				<label for="console">Console</label>
+				<textarea name="console" id="console" placeholder="Intro your commands here !" class="block" rows="3" autofocus required></textarea>
+				<input type="submit" class="others" value="go">
+			</form>
+			<span class="Info">Press shift + Enter to run ur code.</span>
+			<span class="Info">Press shift + Up to see ur last code.</span>
+			<h5>referencias...</h5>
+			<div class="aux-helper">
+				<button class="ref" id="ref-0">appendTo()</button>
+				<button class="ref" id="ref-1">append()</button>
+				<button class="ref" id="ref-2">prependTo()</button>
+				<button class="ref" id="ref-3">prepend()</button>
+				<button class="ref" id="ref-4">insertAfter()</button>
+				<button class="ref" id="ref-5">after()</button>
+				<button class="ref" id="ref-6">insertBefore()</button>
+				<button class="ref" id="ref-7">before()</button>
+				<button class="ref" id="ref-8">clone()</button>
+				<button class="ref" id="ref-9">$('')</button>
+				<button class="ref" id="ref-10">$('TAG')</button>
+				<button class="ref" id="ref-11">remove()</button>
+				<button class="ref" id="ref-12">detach()</button>
+			</div>
+			<input type="text" placeholder="sample code will be here" readonly class="sampleCode block">
+		</div>
+	</div>
+
+	<!-- - - >
+	<script src="./js/jquery.js"></script>
+	<!-- -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- -->
+	<script>
+		var main = function(){
+			console.log( "Hi Welcome..." );
+
+			var lastCode = "";
+			$("#commands-console").on("submit", function(e){
+				e.preventDefault();
+				var $console = $("#console");
+				lastCode = $console.val();
+				$.globalEval( lastCode );
+				$console.val("");
+				update_view();
+			});
+
+			var last = 0;
+			$("#console").keydown(function(e) {
+				//console.log( e.keyCode );
+				if( e.keyCode == 13 && last == 16 ){
+					$("#commands-console").submit();
+					last = 13;
+					return false;
+				}else if( e.keyCode == 38 && last == 16 ){
+					var temporal = $("#console").val();
+					$("#console").val( lastCode );
+					lastCode = temporal;
+					last = 38;
+					return false;
+				}
+				if( last != e.keyCode )
+					last = e.keyCode;
+			});
+			update_view();
+
+			var infoTool = [
+				"$(\"\").appendTo()",
+				"$(\"\").append()",
+				"$(\"\").prependTo()",
+				"$(\"\").prepend()",
+				"$(\"\").insertAfter()",
+				"$(\"\").after()",
+				"$(\"\").insertBefore()",
+				"$(\"\").before()",
+				"$(\"\").clone()",
+				"$(\"\")",
+				"$(\"< class='' id=''></>\")",
+				"$(\"\").remove()",
+				"$(\"\").detach()"
+			];
+			var $sampleCode = $(".sampleCode");
+			$(".ref").on("click", function(e){
+				var id = $(this).attr("id"); // ref-0
+				id = id.substring( id.indexOf('-') + 1 );
+				$sampleCode.val( infoTool[id] );
+				$sampleCode.select();
+				$(this).siblings('.ref').removeClass('up');
+				$(this).addClass('up');
+			});
+
+		}
+		$( document ).ready( main );
+		//$( main );
+
+		function update_view(){
+			var content = '<div class="common-half target">'+($( ".target" ).html())+'</div>' ;
+			$("#html_viewer").text( formatHtmlTags( content ) );
+
+		}
+
+		function formatHtmlTags( html_ ){
+			html_ = html_.replace(/\t/g, '');
+			html_ = html_.replace(/\n/g, '');
+			var indents = 0, lookingSlashes = false, lookingEnds = 0; 
+			var buffer = '';
+			var html_new = "";
+			var current = '';
+			for (var i = 0; i < html_.length; i++) {
+				current = html_.charAt(i);
+				buffer += current;
+				if( current == '<' ){
+					if( lookingSlashes ){
+						return "Error";
+						console.log( html_new );
+					}
+					lookingSlashes = true;
+					continue;
+				}
+				if( lookingSlashes && current == '/' ){
+					lookingEnds++;
+					indents--;
+					html_new += '\n';
+					for (var j = 0; j < indents; j++) 
+						html_new += '\t';
+				}
+				lookingSlashes = false;
+				if( current == '>' ){
+					if( lookingEnds > 0 ){
+						lookingEnds--;
+
+					}else{
+						indents++;
+					}
+					html_new += buffer;	buffer = '';
+
+					html_new += '\n';
+					for (var j = 0; j < indents; j++) 
+						html_new += '\t';
+				}else
+					html_new += buffer;	buffer = '';
+
+			};
+			return html_new;
+		}
+	</script>
+</body>
+</html>

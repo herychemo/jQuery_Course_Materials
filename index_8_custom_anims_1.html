@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample 8</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			font-size: 22px;
+		}
+		.common-half{
+			width: 49%;
+			display: inline-block;
+		}
+		.others{
+			display: none;
+		}
+		.block{
+			display: block;
+			width: 99%;
+			max-width: 99%;
+		}
+		.main{
+			width: 100%;
+			margin: auto;
+			height: 700px;
+		}
+		.main .first{
+			margin-top: 10px;
+			background-color: #7C87E9;
+			padding: 6px;
+			height: 100%;
+			color: white;
+		}
+		.card{
+			height: 300px;
+			width: 300px;
+			margin: 0px -3px;
+			padding: 0px;
+			border: 0px solid black;
+			position: absolute;
+			display: inline-block;
+
+			border-radius: 			10px;
+			-moz-border-radius: 	10px;
+			-webkit-border-radius: 	10px;
+		}
+		.card_1{
+			background-color: 	#7CBDE9;
+			color: 				#7CBDE9;
+			top: 	100px;
+			left: 	100px;
+		}
+		.card_2{
+			background-color: 	#51A7E1;
+			color: 				#51A7E1;
+			top: 	100px;
+			left: 	400px;
+			
+		}
+		.card_3{
+			background-color: 	#2691DA;
+			color: 				#2691DA;
+			top: 	400px;
+			left: 	400px;
+		}
+		.card_4{
+			background-color: 	#1E74AE;
+			color: 				#1E74AE;
+			top: 	400px;
+			left: 	100px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="main">
+		<div class="block first">
+			<div class="card card_1">hidden</div>
+			<div class="card card_2">hidden</div>
+			<div class="card card_3">hidden</div>
+			<div class="card card_4">hidden</div>
+		</div>
+	</div>
+	<!-- - - >
+	<script src="./js/jquery.js"></script>
+	<!-- -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- -->
+	<script>
+		var main = function(){
+			console.log( "Hi Welcome..." );
+
+			play1();
+
+		}
+		$( document ).ready( main );
+		//$( main );
+		function play1(){
+			$(".card_1").animate({
+				'left': 400
+			}, getInterval(true) );
+
+			setTimeout(function(){
+				$(".card_1").hide();
+				$(".card_2").animate({
+					'top': 400},
+					interval);
+			}, getInterval(true)  );
+			
+			setTimeout(function(){
+				$(".card_2").hide();
+				$(".card_3").animate({
+					'left': 100},
+					interval);
+			}, getInterval() );
+
+			setTimeout( function(){
+				$(".card_3").hide();
+				$(".card_4").animate({
+					'height': 0},
+					interval);
+
+			},getInterval() );
+			
+			setTimeout( function(){
+
+				$(".card_4").animate({
+					'height': 300},
+					interval);
+
+			},getInterval() );
+
+			setTimeout( function(){
+				$(".card_3").show();
+				$(".card_3").animate({
+					'left': 400},
+					interval);
+
+			},getInterval() );			
+			
+			setTimeout( function(){
+				$(".card_2").show();
+				$(".card_2").animate({
+					'top': 100},
+					interval);
+			},getInterval() );
+
+			setTimeout( function(){
+				$(".card_1").show();
+				$(".card_1").animate({
+					'left': 100},
+					interval, play1);
+			}, getInterval()  );	
+		}
+
+		var interval = 700;
+		var m = 0;
+		function getInterval(reset){
+			if( reset != undefined && reset  )
+				m = 0;
+			m++;
+			return interval * m;
+		}
+	</script>
+</body>
+</html>

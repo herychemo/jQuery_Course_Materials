@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample 4</title>
+	<style>
+		*{
+			box-sizing:border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+
+			font-size: 24px;
+		}
+		.common-half{
+			width: 49%;
+			display: inline-block;
+		}
+		.block{
+			display: block;
+		}
+		.main{
+			width: 100%;
+			max-width: 1200px;
+			margin: auto;
+		}
+		.main div{
+			background-color: rgb(0,200,200);
+			padding: 20px;
+
+			vertical-align: top;
+		}
+		a{
+			color: white;
+			text-decoration: none;
+		}
+		a:hover{
+			text-decoration: underline;
+		}
+		.function-btn{
+			margin: 4px auto;
+			padding: 10px;
+		}
+		.logArea{
+			margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="main">
+		<div id="area1" class="common-half">
+			<h2>Hola titulo Area 1</h2>
+			<p>contenido en un parrafo, para ejemplo area 1</p>
+			<a href="http://api.jquery.com/">jQuery API</a><br>
+			<input type="button" class="show-area-btn common-half" value="show my area text #1" >
+			<input type="button" class="show-html-btn common-half" value="show my area html #1" >
+		</div>
+		<div id="area2" class=" common-half">
+			<h2>Hola titulo Area 2</h2>
+			<p>contenido para parrafo #2, ejemplo para el área #2 ...</p>
+			<a href="https://www.google.com">Google.</a><br>
+			<input type="button" class="show-area-btn common-half" value="show my area text #2">
+			<input type="button" class="show-html-btn common-half" value="show my area html #2" >
+		</div>
+		<input type="button" id="switch_1" class="function-btn block" value="Cambio de Areas !!" >
+		<br>
+		<div id="area3" class="common-half" >
+			<h2>LOG # 1</h2>
+			<span id="logFor1" class="block logArea">
+				waiting for info !
+			</span>
+		</div>
+		<div id="area4" class="common-half" >
+			<h2>LOG # 2</h2>
+			<span id="logFor2" class="block logArea">
+				waiting for info !
+			</span>
+		</div>
+	</div>
+	
+	<!-- - - >
+	<script src="./js/jquery.js"></script>
+	<!-- -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- -->
+	<script>
+		var main = function(){
+			console.log( "Hi Welcome..." );
+			$("#switch_1").on("click", function(e){
+				var $area1 = $("#area1"), $area2 = $("#area2");
+				var temp = $area1.html();
+				$area1.html( $area2.html() );
+				$area2.html( temp );
+				addFunctionsToButtons();
+			});
+			addFunctionsToButtons();
+		}
+		$( document ).ready( main );
+		//$( main );
+		function addFunctionsToButtons(){
+			$(".show-area-btn").on("click", function(e){
+				$parent = $(this).parent("div");
+				var temp = $parent.prop('id');
+				var area = temp.substring( temp.length - 1 );
+				$("#logFor" + area ).text( $parent.text() );
+			});
+			$(".show-html-btn").on("click", function(e){
+				$parent = $(this).parent("div");
+				var temp = $parent.attr('id');
+				var area = temp.substring( temp.length - 1 );
+				$("#logFor" + area ).text( $parent.html() );
+			});
+		}
+	</script>
+</body>
+</html>

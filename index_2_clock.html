@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample 2</title>
+	<style>
+		.reloj{
+			border-radius: 			10px;
+			-moz-border-radius: 	10px;
+			-webkit-border-radius: 	10px;
+			border: 0px solid #000000;
+
+			background-color: gray;
+			color: white;
+			padding: 10px 20px;
+		}
+		.reloj div{
+			font-size: 26px;
+			color: inherit;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h2>Reloj jQuery...</h2>
+	</header>
+	<section>
+		<main>
+			<div class="reloj">
+				<div>
+					xx:xx
+				</div>
+				Set Alarm To:
+				<input type="number" name="hour" id="hour" 		min="0" max="23" value="01" > : 
+				<input type="number" name="minute" id="minute" 	min="0" max="59" value="01">
+			</div>
+		</main>
+	</section>
+
+	<!-- - - >
+	<script src="./js/jquery.js"></script>
+	<!-- -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- -->
+	<script>
+		var main = function(){
+			console.log( "Hi Welcome..." );
+
+			setInterval(function(){
+				var now = new Date();
+				
+				var hours = now.getHours(), minutes = now.getMinutes(), seconds = now.getSeconds();
+				
+				var myTime = ("0" + hours ).slice(-2) + ":" + ("0" + minutes ).slice(-2);
+				
+				console.log( myTime + ":" + seconds );
+
+				$(".reloj div").text( myTime );
+
+				if( seconds == 0 && $("#hour").val() == hours && $("#minute").val() == minutes )
+					alert( "It is the time..." + myTime );
+
+			}, 1000);
+
+		}
+		$( document ).ready( main );
+		//$( main );
+	</script>
+</body>
+</html>
