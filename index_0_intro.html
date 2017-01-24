@@ -1,27 +1,46 @@
 <!DOCTYPE html> 
 <html lang="es">
 <head>
+	<!-- 
+		En esta parte, solo hablamos un poco de que es jQuery, y el temario, no es un contenido muy relevante,
+		Se le explica a los estudiantes, las maneras de importarlo para trabajar con el, así como otros
+		conceptos relevantes, como por ejemplo, que es un CDN o el DOM.
+	-->
 	<meta charset="UTF-8">
 	<title>Sample 0</title>
-	<!-- -->
+	<!-- Importamos jQuery, desde archivo -->
 	<script src="./js/jquery.js"></script>
-	<!-- - ->
+	<!--  
+		Importamos jQuery desde CDN - ->
 	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 	<!-- -->
 	<script>
+		/* Nos hes posible crear una función, que será la que jQuery ejecutará 
+			cuando el documento este listo para trabajar con el.
+		*/
 		var main = function(){
 			console.log("Hi friends" );
 
 			//console.log(  $( "p" ).text() );
 		}
+		// Cuando el documento este listo, mandamos ejecutar la función Main.
 		$(document).ready( main );
-		//$( main );
-
+		//$( main ); 
+		/* Si enviamos la función como parametro a la función jQuery,
+			Se produce el mismo comportamiento de $(document).ready( main );
+		*/
+			// podemos llamar a la función jQuery, de dos maneras
+			// * como $, o como jQuery. 
 		//jQuery(document).ready( main );
+			/*También podemos ejecutar la función principal agregandola, 
+				en el manejador de eventos, onload de window, pero en este caso
+				estará será ejecutada, hasta que el documento completo termine de cargar,
+				esto puede ser útil cuando se trabaja con imagenes.*/
 		//window.onload = main;
 	</script>
 </head>
 <body>
+<!--Contenido Dummy -->
 	<h2>Titulo para página!</h2>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nulla veniam autem veritatis, adipisci officia? Tempora necessitatibus iusto, minima, maxime, ipsum quae dolore repellat quaerat praesentium dignissimos molestias! Exercitationem, ad.</p>
 </body>
