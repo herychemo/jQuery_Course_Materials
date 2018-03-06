@@ -18,9 +18,9 @@
 </head>
 <body>
 	<h2 id="mainTitle"> detectar eventos </h2>
-	
+
 	<div class="bloque">
-		<input type="button" class="simple-btn" value="Boton!!"  >	
+		<input type="button" class="simple-btn" value="Boton!!"  >
 	</div>
 
 	<div class="bloque">
@@ -38,24 +38,24 @@
 	<div class="bloque">
 		<span id="radioText" > x </span> <br>
 
-		<input type="radio" name="radios" id="radio1">	
+		<input type="radio" name="radios" id="radio1">
 		<label for="radio1">Radio 1</label>
-		
-		<input type="radio" name="radios" id="radio2">	
+
+		<input type="radio" name="radios" id="radio2">
 		<label for="radio2">Radio 2</label>
-		
-		<input type="radio" name="radios" id="radio3">	
+
+		<input type="radio" name="radios" id="radio3">
 		<label for="radio3">Radio 3</label>
 	</div>
 
 	<form action="" class="bloque" method="POST">
-		<input type="text" 		name="user" id="user" placeholder="Usuario" 	required>			
-		<input type="password" 	name="pass" id="pass" placeholder="Contraseña" 	required>	
+		<input type="text" 		name="user" id="user" placeholder="Usuario" 	required>
+		<input type="password" 	name="pass" id="pass" placeholder="Contraseña" 	required>
 
-		<input type="reset" value="Restablecer">								
-		<input type="submit" value="Enviar">									
+		<input type="reset" value="Restablecer">
+		<input type="submit" value="Enviar">
 	</form>
-	
+
 	<!-- - - >
 	<script src="./js/jquery.js"></script>
 	<!-- -->
@@ -64,7 +64,7 @@
 	<script>
 		var main = function(){
 			console.log( "Hi Welcome..." );
-			
+
 			var $check_ = jQuery("#check_");
 
 			$check_.change(function(event) {
@@ -95,7 +95,7 @@
 					$(this).text(" detectar eventos ");
 				}
 			});
-			
+
 			$("select#selector").on( "change", function(e){
 				alert( $(this).val() + " - " + $("#selector option:selected").text() );
 			});

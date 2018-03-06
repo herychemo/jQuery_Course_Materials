@@ -31,7 +31,7 @@
 					xx:xx
 				</div>
 				Set Alarm To:
-				<input type="number" name="hour" id="hour" 		min="0" max="23" value="01" > : 
+				<input type="number" name="hour" id="hour" 		min="0" max="23" value="01" > :
 				<input type="number" name="minute" id="minute" 	min="0" max="59" value="01">
 			</div>
 		</main>
@@ -48,11 +48,11 @@
 
 			setInterval(function(){
 				var now = new Date();
-				
+
 				var hours = now.getHours(), minutes = now.getMinutes(), seconds = now.getSeconds();
-				
+
 				var myTime = ("0" + hours ).slice(-2) + ":" + ("0" + minutes ).slice(-2);
-				
+
 				console.log( myTime + ":" + seconds );
 
 				$(".reloj div").text( myTime );

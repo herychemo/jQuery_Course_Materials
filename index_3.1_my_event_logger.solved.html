@@ -18,34 +18,34 @@
 </head>
 <body>
 	<h2 class="titulo_1" >Detectar Eventos Time</h2>
-	
+
 	<h3 id="title_2">Titulo dos...</h3>
-	
+
 	<div class="bloque">
 		<input type="button" class="simple-btn" value="Input Button" >
 		<button class="button">Boton Real</button>
 	</div>
-	
+
 	<div class="bloque">			<!-- Bloque vacio. -->
 		<span id="span_x" class="span-x" >Etiqueta libre, </span>
 	</div>
 
 	<form action="#" id="form_" class="bloque" method="GET">
-		<input type="text" 		name="user" id="user" placeholder="Usuario" 	required>	
+		<input type="text" 		name="user" id="user" placeholder="Usuario" 	required>
 
-		<input type="password" 	name="pass" id="pass" placeholder="Contraseña" 	required>	
-		
-		<input type="text" 	name="fullName" id="fullName" placeholder="Nombre Completo"	required>	
-		
+		<input type="password" 	name="pass" id="pass" placeholder="Contraseña" 	required>
+
+		<input type="text" 	name="fullName" id="fullName" placeholder="Nombre Completo"	required>
+
 		<div class="bloque">
 			Sexo: <span id="radioPrinter" >Hombre</span> <br>
-			<input type="radio" name="gender" id="man" checked>	
+			<input type="radio" name="gender" id="man" checked>
 			<label for="man">Hombre</label>
-			<input type="radio" name="gender" id="radio2">	
+			<input type="radio" name="gender" id="radio2">
 			<label for="radio2">Mujer</label>
 		</div>
 
-		<input type="reset" value="Restablecer">			
+		<input type="reset" value="Restablecer">
 		<input type="submit" value="Enviar">
 	</form>
 
@@ -61,25 +61,25 @@
 			// 1
 			$(".titulo_1").on({
 				"mouseover": function(e){
-					$("#title_2").text("Oye !, alejate de mi hermano...");
+					$("#title_2").text("Oye !, alejate de titulo_1...");
 				},
 				"mouseout": function(e){
 					$("#title_2").text("Bien, mantente lejos v:");
 				} ,
 				"click": function(e){
 					$("#title_2").text("Dejalo en paz !! D:< ! ");
-				} 
+				}
 			});
 			$("#title_2").on({
 				"mouseover": function(e){
-					$(".titulo_1").text("Oye !, alejate de mi hermano...");
+					$(".titulo_1").text("Oye !, alejate de titulo_2...");
 				},
 				"mouseout": function(e){
 					$(".titulo_1").text("Bien, mantente lejos v:");
 				} ,
 				"click": function(e){
 					$(".titulo_1").text("Dejalo en paz !! D:< ! ");
-				} 
+				}
 			});
 
 			//2
@@ -112,14 +112,14 @@
 					user: $("#user").val(),
 					password: $("#pass").val(),
 					fullName: $("#fullName").val(),
-					gender: $("#radioPrinter").text() 
+					gender: $("#radioPrinter").text()
 				};
 					// En este punto tenemos un objeto del tipo json(JavaScript Object Notation)
 					// Si intentamos imprimir directamente el mensaje, nos dará un resultado tipo Object,
 				alert(  myData );
 
 					// Pero podemos obtener una notación comprensible, bajo el siguiente procedimiento
-						// Desde el objeto global, JSON, la función stringify, toma un json, y lo 
+						// Desde el objeto global, JSON, la función stringify, toma un json, y lo
 										//	convierte en un string, con la notación tradicional
 				alert( JSON.stringify( myData ) );
 						// TARA ! ♪♫					// http://www.w3schools.com/json/default.asp
@@ -130,15 +130,15 @@
 		//$( main );
 		/*
 			Insturcciones...
-	
-			1-Habrá eventos de mouseover, mouseout & click, en los dos títulos de la parte superior, 
+
+			1-Habrá eventos de mouseover, mouseout & click, en los dos títulos de la parte superior,
 				pero el segundo título debe mostrar el estado del primero y viceversa
-			
-			2-habrá que darle eventos click diferentes a los dos botones, mostrando su contenido en un alert, 
-			
+
+			2-habrá que darle eventos click diferentes a los dos botones, mostrando su contenido en un alert,
+
 			3-crear un nuevo elemento html dentro del bloque vacío, y asignarle un evento [decisión libre].
-	
-			4-mostrar dentro de #radioPrinter, el valor del label, del radio seleccionado.		
+
+			4-mostrar dentro de #radioPrinter, el valor del label, del radio seleccionado.
 
 			5-al dar reset al form, mandar el foco al campo nombre completo.
 

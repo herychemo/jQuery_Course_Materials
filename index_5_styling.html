@@ -97,7 +97,7 @@
 			-moz-border-radius: 	6px;
 			-webkit-border-radius: 	6px;
 		}
-		.neither{}
+		.noTheme{}
 		.theme-1{
 			border: 1px solid #007399;
 			background-color: #0099cc;
@@ -165,7 +165,7 @@
 					<div class="bloque">
 						<label for="A2-class">Clase</label>
 						<select name="A2-class" id="A2-class">
-							<option value="0" selected>neither</option>
+							<option value="0" selected>noTheme</option>
 							<option value="1">theme-1</option>
 							<option value="2">theme-2</option>
 						</select>
@@ -208,7 +208,7 @@
 			});
 			$("#A2-class").change(function(event) {
 				var $target2 = $("#A2-target");
-				$target2.removeClass('neither');
+				$target2.removeClass('noTheme');
 				$target2.removeClass('theme-1');
 				$target2.removeClass('theme-2');
 				$target2.addClass( $("#A2-class option:selected").text() );
